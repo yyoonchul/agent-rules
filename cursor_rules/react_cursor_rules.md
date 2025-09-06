@@ -9,69 +9,69 @@ alwaysApply: false
 
 ---
 
-### 📌 폴더 구조 핵심 원칙 (초기 단계)
+### 📌 Core Folder Structure Principles (Initial Stage)
 
-1. **기능 중심**
+1. **Feature-Centric**
 
-   * 모든 새 코드는 `features/<feature-name>/` 아래에 모은다.
+   * All new code should be organized under `features/<feature-name>/`.
 
-2. **필요할 때만 생성**
+2. **Create Only When Needed**
 
-   * 폴더·파일은 “오늘 쓰는 것”만 만든다.
+   * Create folders and files only for what you're using "today".
 
-3. **단일 책임**
+3. **Single Responsibility**
 
-   * 컴포넌트·훅·API·서비스는 파일 1개당 역할 1개.
+   * Components, hooks, APIs, and services should have one role per file.
 
-4. **내부 레이어**
+4. **Internal Layers**
 
-   * 기능 폴더 안에서만 `ui/ hooks/ api/ services/ tests/` 분류한다.
+   * Classify `ui/ hooks/ api/ services/ tests/` only within feature folders.
 
-5. **공통 코드 승격 규칙**
+5. **Common Code Promotion Rule**
 
-   * 동일 로직이 **3곳 이상** 재사용될 때만 `shared/`로 이동.
+   * Move to `shared/` only when the same logic is reused in **3 or more places**.
 
-6. **상위 구조 고정**
+6. **Fixed Top-Level Structure**
 
-   * 최상위는 딱 **`assets/ shared/ features/`** 세 폴더로 유지.
+   * Maintain only **`assets/ shared/ features/`** three folders at the top level.
 
-> 이 6가지만 지키면 MVP 속도와 향후 확장성을 동시에 확보할 수 있습니다.
+> Following these 6 principles ensures both MVP speed and future scalability.
 
 # Project Frontend Rules
 
-## UI 컴포넌트 사용 규칙
+## UI Component Usage Rules
 
-1. 공통 컴포넌트 우선 사용
-   - src/shared/ui의 컴포넌트를 우선적으로 사용
-   - Button, Card, Input, Badge 등 기본 컴포넌트 활용
-   - 커스텀 스타일은 Tailwind 클래스로 적용
+1. Prioritize Common Components
+   - Use components from src/shared/ui as priority
+   - Utilize basic components like Button, Card, Input, Badge
+   - Apply custom styles using Tailwind classes
 
-2. 문서 참조
-   - docs/ui-guide.md 문서 먼저 확인
-   - 컴포넌트 사용법 및 예시 코드 참고
-   - 디자인 토큰 및 레이아웃 가이드라인 준수
+2. Document Reference
+   - Check docs/ui-guide.md document first
+   - Refer to component usage and example code
+   - Follow design tokens and layout guidelines
 
-3. 컴포넌트 Import 경로
-   - 상대 경로 사용: "../../../shared/ui/[component]"
-   - Path alias (@/) 사용 금지
+3. Component Import Paths
+   - Use relative paths: "../../../shared/ui/[component]"
+   - Prohibit use of path alias (@/)
 
-4. 페이지 레이아웃
-   - container + max-w-{size} 패턴 사용
-   - 일관된 spacing system 적용
-   - 반응형 디자인 고려
+4. Page Layout
+   - Use container + max-w-{size} pattern
+   - Apply consistent spacing system
+   - Consider responsive design
 
-5. 상태 처리
-   - 로딩/에러 상태 항상 구현
-   - UI 가이드의 예시 활용
+5. State Handling
+   - Always implement loading/error states
+   - Utilize examples from UI guide
 
-## 파일 구조
+## File Structure
 
 features/
   ├── [feature_1]]/
-  │   ├── ui/          # 컴포넌트
-  │   ├── hooks/       # 커스텀 훅
-  │   ├── api/         # API 호출
-  │   └── types/       # 타입 정의
+  │   ├── ui/          # Components
+  │   ├── hooks/       # Custom hooks
+  │   ├── api/         # API calls
+  │   └── types/       # Type definitions
   └── [feature_2]/
       ├── ui/
       ├── hooks/
@@ -79,10 +79,10 @@ features/
       └── types/
 
 shared/
-  ├── ui/             # 공통 컴포넌트
-  ├── lib/            # 유틸리티
-  ├── hooks/          # 공통 훅
-  └── types/          # 공통 타입 
+  ├── ui/             # Common components
+  ├── lib/            # Utilities
+  ├── hooks/          # Common hooks
+  └── types/          # Common types 
 ---
 
 ### 1. Code Style & Structure
