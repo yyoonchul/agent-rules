@@ -34,12 +34,16 @@ docs/
 ├── DESIGN.md
 ├── FRONTEND.md
 ├── PLANS.md
+CLAUDE.md → AGENTS.md (symlink)
 ```
 
 3. Populate each file with initial content tailored to the project context
 4. Use this skill's `templates/` directory as the source of templates
+5. Create a symlink: `ln -s AGENTS.md CLAUDE.md` so that `CLAUDE.md` always mirrors `AGENTS.md`
 
-**Important**: Do not overwrite existing files. Only create missing ones.
+**Important**:
+- Do not overwrite existing files. Only create missing ones.
+- If `CLAUDE.md` already exists as a regular file, replace it with a symlink to `AGENTS.md`.
 
 ### `add-design-doc <title>` — Add a design document
 
