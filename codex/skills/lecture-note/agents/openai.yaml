@@ -1,0 +1,7 @@
+interface:
+  display_name: "Lecture Note"
+  short_description: "Turn one transcript markdown into a structured note"
+  default_prompt: "Use $lecture-note to turn one transcript markdown file into a merged lecture-note file."
+
+policy:
+  allow_implicit_invocation: false
