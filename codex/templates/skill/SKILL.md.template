@@ -1,0 +1,40 @@
+---
+name: {{skill-name-kebab-case}}
+description: {{이 스킬이 호출되어야 하는 상황과 호출되면 안 되는 경계를 명확히 기술}}
+---
+
+# Goal
+
+{{이 스킬이 수행할 목표를 명확하고 짧게 작성}}
+
+# Inputs
+
+- User request: {{사용자 입력 형태}}
+- Optional parameters: {{있다면 형식 정의}}
+
+# Procedure
+
+1. {{필수 사전 확인}}
+2. {{컨텍스트 수집}}
+3. {{핵심 작업 수행}}
+4. {{검증 수행}}
+5. {{결과 정리 및 보고}}
+
+# Output Contract
+
+- Summary: {{핵심 결과}}
+- Artifacts: {{생성/수정 파일 목록}}
+- Validation: {{실행한 테스트/체크와 결과}}
+- Follow-up: {{필요한 다음 작업 제안}}
+
+# Resource Routing
+
+- 상세 참고 문서: `references/reference.md`
+- 실행 스크립트: `scripts/` 하위 파일
+- 템플릿/리소스: `assets/`
+
+# Guardrails
+
+- {{금지 행동}}
+- {{안전/품질 기준}}
+- {{승인 또는 사용자 확인이 필요한 조건}}

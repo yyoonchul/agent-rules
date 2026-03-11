@@ -1,0 +1,48 @@
+---
+name: {{skill-name-kebab-case}}
+description: {{이 스킬이 자동/수동으로 호출되어야 하는 정확한 상황과 제외 조건}}
+argument-hint: "{{예: [ticket-id] [target-path]}}"
+disable-model-invocation: {{true-or-false}}
+user-invocable: {{true-or-false}}
+allowed-tools: {{예: Read, Grep, Bash(git *), Edit}}
+context: {{기본 생략 또는 fork}}
+agent: {{context가 fork일 때만 사용. 예: Explore}}
+---
+
+# Goal
+
+{{이 스킬의 목표를 1~3줄로 명확히 기술}}
+
+# Inputs
+
+- Primary input: `$ARGUMENTS`
+- Optional positional inputs:
+  - `$0`: {{첫 번째 인수 의미}}
+  - `$1`: {{두 번째 인수 의미}}
+
+# Workflow
+
+1. {{사전 조건 확인}}
+2. {{관련 파일/맥락 수집}}
+3. {{핵심 작업 수행}}
+4. {{검증 수행(테스트/체크)}}
+5. {{결과 보고 형식으로 정리}}
+
+# Output Format
+
+- Summary: {{무엇을 했는지}}
+- Changes: {{어떤 파일/리소스를 변경했는지}}
+- Validation: {{어떤 검증을 했고 결과가 무엇인지}}
+- Next actions: {{필요시 사용자에게 제안할 다음 단계}}
+
+# Additional Resources
+
+- 자세한 규칙: `references/reference.md`
+- 예시 출력: `examples/example.md`
+- 자동화 스크립트: `scripts/helper.sh`
+
+# Guardrails
+
+- {{절대 하면 안 되는 것}}
+- {{승인 필요 작업 전 사용자 확인}}
+- {{성능/보안/품질 기준}}
