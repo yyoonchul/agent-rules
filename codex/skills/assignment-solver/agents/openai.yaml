@@ -1,0 +1,7 @@
+interface:
+  display_name: "Assignment Solver"
+  short_description: "Solve one assignment file with detailed explanation"
+  default_prompt: "Use $assignment-solver to solve one problem file and save a solution file next to it."
+
+policy:
+  allow_implicit_invocation: false
