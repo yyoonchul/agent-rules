@@ -1,7 +1,7 @@
 interface:
   display_name: "Lecture Material Digest"
-  short_description: "Create exam-focused digests from lecture files"
-  default_prompt: "Use $lecture-material-digest to read one or more lecture files and create a '<same title>_ digest.md' summary per file in sequence. Keep terms in English and explanations concise in Korean."
+  short_description: "Explain lecture concepts for deep understanding"
+  default_prompt: "Use $lecture-material-digest to read one or more lecture files and create a '<same title>_ digest.md' explanation guide per file in sequence. Keep terms in English and provide detailed Korean explanations for understanding."
 
 policy:
   allow_implicit_invocation: true

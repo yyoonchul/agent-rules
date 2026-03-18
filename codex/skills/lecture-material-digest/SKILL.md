@@ -1,22 +1,22 @@
 ---
 name: lecture-material-digest
-description: Read one or more lecture material files (for example PDF/PPT/PPTX) and generate one Markdown digest file per source in the same folder using the source title + "_ digest" filename pattern. Use when the user asks for exam-focused concept digests from lecture materials, including sequential processing across multiple files.
+description: Read one or more lecture material files (for example PDF/PPT/PPTX) and generate one Markdown digest file per source in the same folder using the source title + "_ digest" filename pattern. Use when the user asks for understanding-focused concept explanations from lecture materials, including sequential processing across multiple files.
 ---
 
 # Lecture Material Digest
 
 ## Goal
 
-Create exam-focused digest Markdown files from lecture material files.
+Create understanding-focused digest Markdown files from lecture material files.
 
 - Output filename: source title + `_ digest.md` (one file per source)
-- Content policy: keep all technical terms exactly in English, and write only explanations in concise Korean
-- Coverage policy: thoroughly include the lecture's major concepts and likely exam concepts
+- Content policy: keep all technical terms exactly in English, and write explanations in clear Korean with enough detail for understanding
+- Coverage policy: thoroughly include the lecture's major concepts and explain what they are, why they matter, and how they connect
 
 ## Inputs
 
 - Lecture material file(s) (required): one or more mentioned files such as `pdf`, `ppt`, `pptx`
-- Optional focus hints (optional): user-provided emphasis (for example, "midterm", "calculation-heavy")
+- Optional focus hints (optional): user-provided emphasis (for example, "기초부터", "수식 위주", "직관 중심")
 
 If multiple files are mentioned, process them sequentially in the user-mentioned order unless the user specifies a different order.
 
@@ -38,8 +38,9 @@ If multiple files are mentioned, process them sequentially in the user-mentioned
 4. Build concept-complete digest per source.
 - Enumerate all major concepts from each material.
 - Preserve key terms exactly as written in English.
-- Explain each concept briefly in Korean.
-- Mark likely exam points with priority (`High`, `Medium`, `Low`) and rationale in concise Korean.
+- Explain each concept in detail so the reader can understand without re-reading the slide.
+- For each major concept, include at least: definition, importance/background, mechanism or flow, and an intuitive example or analogy.
+- Explicitly connect related concepts and call out common confusion points.
 
 5. Save artifacts.
 - For each source, save in the same directory as that source file.
@@ -49,7 +50,7 @@ If multiple files are mentioned, process them sequentially in the user-mentioned
 
 ## Output Contract
 
-- Summary: what was digested and exam-focus strategy
+- Summary: what was explained and learning-focused strategy
 - Artifact: exact saved file path(s)
 - Validation: whether filename collision numbering was used for any artifact
 - Follow-up: only if extraction uncertainty for any source materially affects digest quality
@@ -63,5 +64,5 @@ If multiple files are mentioned, process them sequentially in the user-mentioned
 
 - Process one or more lecture material files sequentially; create a separate digest per source.
 - Do not translate or paraphrase source technical terms away from English.
-- Keep Korean explanations concise and exam-relevant.
+- Prioritize reader understanding over brevity; avoid shallow summary-only output.
 - Do not invent slide content that cannot be extracted from source.

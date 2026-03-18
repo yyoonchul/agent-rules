@@ -1,6 +1,6 @@
 ---
 name: lecture-material-digest
-description: Read one or more lecture material files (for example PDF/PPT/PPTX) and create one Markdown digest per source in the same folder using the source title + "_ digest" filename pattern. Use when the user asks for exam-focused concept digestion from lecture slides/materials, including sequential processing across multiple files.
+description: Read one or more lecture material files (for example PDF/PPT/PPTX) and create one Markdown digest per source in the same folder using the source title + "_ digest" filename pattern. Use when the user asks for understanding-focused concept explanations from lecture slides/materials, including sequential processing across multiple files.
 argument-hint: "[lecture_material_path ...] [focus(optional)]"
 disable-model-invocation: true
 user-invocable: true
@@ -8,18 +8,18 @@ user-invocable: true
 
 # Goal
 
-Generate exam-focused digest Markdown files from lecture material files.
+Generate understanding-focused digest Markdown files from lecture material files.
 
 - Filename rule: source title + `_ digest.md` (one file per source)
-- Language rule: keep terms in English exactly as in source, write explanations only in concise Korean
-- Coverage rule: include all major concepts and highlight likely exam concepts
+- Language rule: keep terms in English exactly as in source, and explain in clear Korean with enough detail for understanding
+- Coverage rule: include all major concepts and explain what they are, why they matter, and how they connect
 
 # Inputs
 
 - Primary input: `$ARGUMENTS`
 - Optional positional inputs:
   - `$0`: `lecture_material_path` (required)
-  - `$1`: `focus` (optional; exam/midterm/final/problem-solving emphasis)
+  - `$1`: `focus` (optional; 예: 기초부터, 직관 중심, 수식 위주)
 
 If argument shape is unclear, resolve the source file from user-mentioned paths and context.
 
@@ -43,8 +43,9 @@ If multiple files are provided, process them sequentially in user-mentioned orde
 4. Build digest content per file.
 - Capture the full set of major concepts from each material.
 - Keep key terms in original English form.
-- Explain each concept briefly in Korean.
-- Add exam priority (`High`/`Medium`/`Low`) with concise Korean rationale.
+- Explain each concept in detail so the reader can understand without re-reading the slide.
+- For each major concept, include at least: definition, importance/background, mechanism or flow, and an intuitive example or analogy.
+- Explicitly connect related concepts and call out common confusion points.
 
 5. Save output files.
 - For each source, save in the source file directory.
@@ -54,7 +55,7 @@ If multiple files are provided, process them sequentially in user-mentioned orde
 
 # Output Format
 
-- Summary: what was digested and exam-focus strategy
+- Summary: what was explained and learning-focused strategy
 - Changes: exact output file path(s)
 - Validation: whether collision numbering was used for any output
 - Next actions: only when extraction uncertainty in any source materially impacts quality
@@ -68,5 +69,5 @@ If multiple files are provided, process them sequentially in user-mentioned orde
 
 - Process one or more lecture material files sequentially; create a separate digest per source.
 - Never translate core technical terms away from English.
-- Keep explanations concise and exam-relevant in Korean.
+- Prioritize reader understanding over brevity; avoid shallow summary-only output.
 - Do not invent unavailable source details.
