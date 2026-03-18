@@ -96,6 +96,7 @@
 새 스킬 작성이 끝나면 아래 명령을 한 번 실행한다.
 
 ```bash
+python3 scripts/update_skills_list.py
 python3 scripts/validate_skills.py --skill <skill-name>
 ```
 

@@ -14,6 +14,7 @@
 agent-skills/
 ├── SKILL_SYSTEM_GUIDE.md        # 이 문서 (운영 지침)
 └── skills/                      # 공통 스킬 본체
+    ├── SKILLS.md                # 통합 스킬 목록(자동 갱신)
     └── <skill-name>/
         ├── SKILL.md             # 필수
         ├── scripts/             # 선택: 실행 코드
@@ -111,6 +112,7 @@ skills-ref validate ./agent-skills/skills/<skill-name>
 `skill-creator` 사용 시 권장 단일 명령:
 
 ```bash
+python3 agent-skills/skills/skill-creator/scripts/update_skills_list.py
 python3 agent-skills/skills/skill-creator/scripts/validate_skills.py --skill <skill-name>
 ```
 

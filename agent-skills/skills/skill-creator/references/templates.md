@@ -164,6 +164,9 @@ metadata:
 ## 9) Post-create validation command
 
 ```bash
+# Refresh unified skill list (always)
+python3 scripts/update_skills_list.py
+
 # Validate one new skill
 python3 scripts/validate_skills.py --skill <skill-name>
 

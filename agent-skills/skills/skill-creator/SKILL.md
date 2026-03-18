@@ -41,11 +41,13 @@ description: Create or update Agent Skills for Claude Code, Codex, and other Age
    - `SKILL.md`가 커지면 `references/`로 분리하고 읽는 조건을 명시한다.
 7. 사용자 프롬프트에 대응 가능한지 점검한다.
    - should-trigger / should-not-trigger 관점으로 확인
-8. 스펙 검증을 실행한다.
+8. 스킬 목록 문서를 최신화한다.
+   - 항상 실행: `python3 scripts/update_skills_list.py`
+9. 스펙 검증을 실행한다.
    - 새 스킬을 다 만든 뒤 한 번에 검증:
      - 단일 스킬: `python3 scripts/validate_skills.py --skill <skill-name>`
      - 전체 스킬: `python3 scripts/validate_skills.py`
-9. 결과를 파일 단위로 정리해 제시한다.
+10. 결과를 파일 단위로 정리해 제시한다.
 
 ## Resource Routing
 
@@ -56,6 +58,7 @@ description: Create or update Agent Skills for Claude Code, Codex, and other Age
 
 ## Available Scripts
 
+- `scripts/update_skills_list.py` — `skills/SKILLS.md`를 현재 스킬 목록 기준으로 갱신한다.
 - `scripts/validate_skills.py` — `skills/` 하위 스킬을 일괄/선택 검증한다.
 - `scripts/init_skill.py` — 새 스킬 폴더 템플릿을 생성한다.
 - `scripts/quick_validate.py` — 단일 스킬의 기본 형식을 빠르게 검증한다.
@@ -68,6 +71,7 @@ description: Create or update Agent Skills for Claude Code, Codex, and other Age
 - 생성/수정된 파일 목록
 - 스킬 이름과 `description` 근거
 - 선택한 구조(`scripts/`, `references/`, `assets/`) 근거
+- 갱신된 스킬 목록 파일 경로(`skills/SKILLS.md`)
 - 검증 관점(트리거 정확도, 실행 절차, 실패 시 보정 루프)
 - 검증 실행 결과(`skills-ref` 가능 시 결과 포함)
 
@@ -77,5 +81,6 @@ description: Create or update Agent Skills for Claude Code, Codex, and other Age
 - `SKILL.md`에 불필요한 일반 지식 설명을 넣지 않는다.
 - 선택지를 과도하게 나열하지 말고 기본 경로를 먼저 제시한다.
 - 인터랙티브 프롬프트 의존 스크립트는 피한다.
+- 스킬을 생성/수정한 경우 `scripts/update_skills_list.py` 실행을 생략하지 않는다.
 - 스크립트는 `--help`, 명확한 에러, 구조화 출력(stdout)/진단(stderr) 분리를 지향한다.
 - 과적합을 피하기 위해 description 개선 시 다양한 프롬프트 패턴을 사용한다.
