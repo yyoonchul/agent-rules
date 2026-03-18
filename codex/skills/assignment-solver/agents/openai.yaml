@@ -4,4 +4,4 @@ interface:
   default_prompt: "Use $assignment-solver to solve one problem file and save a solution file next to it."
 
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true
