@@ -12,6 +12,7 @@ Produce a high-quality solution artifact for exactly one assignment problem file
 - Required outcome: final answer + detailed explanation
 - Default output: Markdown file
 - Optional output: a non-Markdown format only when the user explicitly requests it
+- If the requested output is code (or a folder containing code), also generate a companion Markdown document summarizing assignment overview, evidence, concepts used, and sources from lecture slides/assignment materials
 
 ## Inputs
 
@@ -50,7 +51,9 @@ If output format is not explicitly requested, use `md`.
 
 6. Enforce output structure.
 - For `md`, use the required Markdown structure below.
-- For non-`md`, generate only the requested format and include concise explanation/assumptions in a format-appropriate way (for code formats, use comments).
+- For non-`md`, generate the requested format artifact.
+- If the requested format is code or a code-containing folder, also generate a companion Markdown file next to the output (base name: `<stem> sol notes.md`, with the same collision handling rule).
+- The companion Markdown must organize references and sources specifically from lecture slides and assignment materials.
 
 ## Required Markdown Structure
 
@@ -63,10 +66,25 @@ When output format is `md`, include sections in this order:
 5. `## 출처 링크` (only if web research was used)
 6. `## 가정 및 불확실성`
 
+## Companion Markdown for Code/Folder Outputs
+
+When the output is code (for example `py`, `js`, `java`, etc.) or a folder containing code, create an additional Markdown file with these sections in order:
+
+1. `## 과제 개요`
+2. `## 참고 근거 (강의 슬라이드/과제 자료)`
+3. `## 사용된 개념 설명`
+4. `## 출처 (강의 슬라이드/과제 자료)`
+
+Rules:
+
+- Prefer local lecture slides and assignment handouts/materials as primary evidence.
+- If a referenced source was not used directly, do not list it.
+- Keep mappings explicit: concept -> which slide/material supports it.
+
 ## Output Contract
 
 - Summary: what was solved and which strategy was used (local references, web, or mixed)
-- Artifact: exact saved file path
+- Artifact: exact saved file path(s) (include companion Markdown path when created)
 - Validation: note whether filename collision handling was applied
 - Follow-up: suggest additional checks only when materially helpful
 
