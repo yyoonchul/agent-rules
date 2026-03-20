@@ -31,12 +31,33 @@ If output format is not explicitly requested, use `md`.
 2. Gather context from local references when provided.
 - Read directly mentioned reference files.
 - For referenced folders, recursively scan and prioritize relevant text-like files first.
-- Include PDF sources when extractable.
+- When a lecture or reference file is `.pdf`, `.pptx`, or `.ppt`, use the bundled extractor at `scripts/extract_reference_text.py` resolved relative to this `SKILL.md`.
+- The bundled extractor already includes the required runtime modules under `vendor/`; do not install packages in the assignment/project folder at execution time.
+- Format routing is fixed:
+  - `.pdf` -> bundled `pypdf`
+  - `.pptx` -> bundled extractor's standard-library ZIP/XML parser
+  - `.ppt` -> bundled `olefile` + binary PowerPoint text-record parser
+- Include PDF/PPTX/PPT sources when extractable.
 - Prefer relevance over volume: select files by filename/path keywords and problem-topic matching.
 
 3. Fill knowledge gaps.
 - If references are absent or insufficient, perform web research.
 - Combine web findings with generally known domain knowledge and explicit reasoning.
+
+### Bundled Lecture Material Extraction
+
+Use the following command pattern for bundled lecture material extraction:
+
+```bash
+python3 "<skill-dir>/scripts/extract_reference_text.py" "<reference-file>"
+```
+
+Rules:
+
+- Resolve `<skill-dir>` as the directory containing this `SKILL.md`.
+- Supported bundled formats are only `.pdf`, `.pptx`, and `.ppt`.
+- Treat `.ppt` extraction as text-focused best effort. If the extracted text is sparse or noisy, say so in the final artifact and compensate with other references or web research.
+- If a file in one of these formats fails extraction, report the failure explicitly instead of silently skipping it.
 
 4. Build the solution content.
 - Detect and follow the language of the problem file.
