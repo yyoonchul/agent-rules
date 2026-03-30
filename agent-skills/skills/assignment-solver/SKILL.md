@@ -93,6 +93,7 @@ Rules:
 - If information is incomplete, continue with explicit assumptions and uncertainty notes.
 - Track A (Math/Physics PDF Solver) writing rules:
   - In `## 상세 풀이`, use the explicit flow: `핵심 개념` -> `핵심 공식/Equations` -> `대입/적용` -> detailed step-by-step 풀이.
+  - When writing equations in Track A, use LaTeX math blocks in the requested formats: `$...$` (single-line/inline) or `$$` + newline + equation + newline + `$$` (multi-line block).
   - Keep lecture-assigned professional terms/concepts in English exactly as written; explain them only in Korean.
   - Prefer local evidence for each concept/formula; when showing a formula, briefly indicate the source ground-truth evidence in `## 참고 근거 (로컬 파일/섹션)` (no fabricated citations).
 - Track B (Code Results Generator) writing rules:
