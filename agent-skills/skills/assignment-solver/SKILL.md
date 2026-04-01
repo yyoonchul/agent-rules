@@ -87,6 +87,35 @@ Rules:
 - Treat `.ppt` extraction as text-focused best effort. If the extracted text is sparse or noisy, say so in the final artifact and compensate with other references or web research.
 - If a file in one of these formats fails extraction, report the failure explicitly instead of silently skipping it.
 
+### Optional PDF page OCR (agent judgment)
+
+When **bundled text extraction** (`scripts/extract_reference_text.py`) is insufficient for a `.pdf`, the agent may run **page-level OCR** using the separate tool below. Do **not** run OCR by default; use it only when justified.
+
+**When to consider OCR**
+
+- Extraction raises `no extractable text found in PDF`, or
+- Per-page extracted text is clearly too sparse for the visible content (e.g. scan/image-only slides, figures with critical labels), or
+- The problem statement clearly depends on content that is unlikely to be text-layered.
+
+**Command pattern**
+
+```bash
+python3 "<skill-dir>/scripts/extract_pdf_page_ocr.py" --page N "<path-to.pdf>"
+# or multiple pages / ranges (1-based):
+python3 "<skill-dir>/scripts/extract_pdf_page_ocr.py" --pages "1,3-5" "<path-to.pdf>"
+# optional: tesseract language(s), default is eng+kor
+python3 "<skill-dir>/scripts/extract_pdf_page_ocr.py" --page N --lang eng "<path-to.pdf>"
+```
+
+**Rules**
+
+- Resolve `<skill-dir>` as the directory containing this `SKILL.md`.
+- OCR output is **less reliable** than native PDF text; treat it as approximate.
+- In the solution artifact, label OCR-derived content explicitly (e.g. in `## 참고 근거 (로컬 파일/섹션)` or `## 가정 및 불확실성`): note **OCR**, **page number(s)**, and **uncertainty** (misread symbols, equations, diagrams).
+- If OCR cannot run (missing `tesseract`, renderer, or languages), report the error message to the user and fall back to asking for alternate materials or other allowed strategies—do not invent PDF content.
+
+**Runtime prerequisites** (not bundled; see `vendor/README.md`): `tesseract` on PATH; plus **either** Poppler (`pdftoppm`) **or** an importable **PyMuPDF** (`fitz`) in the Python environment used to run the script.
+
 4. Build the solution content.
 - Detect and follow the language of the problem file.
 - Provide the final answer first, then step-by-step explanation.
