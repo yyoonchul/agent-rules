@@ -1,0 +1,7 @@
+interface:
+  display_name: "Exam Cram Sheet"
+  short_description: "Reverse-engineer past exams into a 필수암기 정리 cram sheet"
+  default_prompt: "Use $exam-cram-sheet on the given midterm/final folder to produce one '시험_필수암기_정리.md' by reverse-engineering past quizzes, HW, and example problems. Keep terms in English, explanations in Korean."
+
+policy:
+  allow_implicit_invocation: true
