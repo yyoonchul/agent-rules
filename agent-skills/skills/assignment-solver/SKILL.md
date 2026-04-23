@@ -116,6 +116,16 @@ python3 "<skill-dir>/scripts/extract_pdf_page_ocr.py" --page N --lang eng "<path
 
 **Runtime prerequisites** (not bundled; see `vendor/README.md`): `tesseract` on PATH; plus **either** Poppler (`pdftoppm`) **or** an importable **PyMuPDF** (`fitz`) in the Python environment used to run the script.
 
+### Non-Bundled Format Extraction (delegate to md-convert)
+
+The bundled extractor handles `.pdf` / `.pptx` / `.ppt` only. For any other reference format — `.docx`, `.xlsx`, `.html`, `.epub`, images, audio, ZIP, YouTube URL, etc. — delegate to the sibling `md-convert` skill instead of hand-rolling an extractor:
+
+```bash
+python3 agent-skills/skills/md-convert/scripts/convert.py "<reference>" --stdout
+```
+
+Use the returned Markdown as a reference source under `## 참고 근거 (로컬 파일/섹션)`. Do **not** use `md-convert` for `.pdf` / `.pptx` / `.ppt` — the bundled extractor is primary for those to avoid pip-install requirements at execution time. If `md-convert` fails (see `agent-skills/skills/md-convert/references/gotchas.md` for setup issues), report the failure and continue with other available references.
+
 4. Build the solution content.
 - Detect and follow the language of the problem file.
 - Provide the final answer first, then step-by-step explanation.

@@ -27,9 +27,13 @@ If multiple files are mentioned, process them sequentially in the user-mentioned
 - Confirm each path exists and is a file.
 
 2. Extract readable content from each source.
-- Read text directly when possible.
-- For slide/PDF formats, extract text from the file content available in the environment.
-- If extraction quality is low, continue with explicit uncertainty notes instead of fabricating details.
+- If the source is already Markdown/plain-text, read it directly.
+- Otherwise (PDF/PPT/PPTX or any non-Markdown source), delegate extraction to the `md-convert` skill to produce a Markdown representation and work on that Markdown:
+  ```bash
+  python3 agent-skills/skills/md-convert/scripts/convert.py "<source>" --stdout
+  ```
+  Use the returned Markdown text as the concept source for the digest. If `md-convert` exits with code 3 (`markitdown` not installed), ask the user to install it per `agent-skills/skills/md-convert/references/gotchas.md`; if it exits with code 5 (conversion failed), continue with explicit uncertainty notes instead of fabricating details.
+- If extraction quality is still low, continue with explicit uncertainty notes instead of fabricating details.
 
 3. Apply digest instructions and template.
 - Follow `references/work-instructions.md`.

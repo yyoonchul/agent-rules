@@ -1,0 +1,3 @@
+interface:
+  display_name: "md-convert"
+  short_description: "Convert PDF/DOCX/PPTX/XLSX/HTML/image/audio files to Markdown via markitdown"
