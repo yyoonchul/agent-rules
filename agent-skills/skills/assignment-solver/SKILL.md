@@ -1,6 +1,10 @@
 ---
 name: assignment-solver
-description: Solve one assignment problem file using a single endpoint with two logical tracks: (A) Math/Physics PDF problem solving (lecture slides/lecture notes as ground truth) and (B) code artifact generation. Save a final answer with detailed explanation next to the problem file.
+description: >-
+  Solve one assignment problem file using a single endpoint with two logical
+  tracks: (A) Math/Physics PDF problem solving (lecture slides/lecture notes as
+  ground truth) and (B) code artifact generation. Save a final answer with
+  detailed explanation next to the problem file.
 ---
 
 # Assignment Solver
