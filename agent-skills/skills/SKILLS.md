@@ -6,7 +6,7 @@
 | 스킬 이름 | 역할 요약 | 경로 |
 | --- | --- | --- |
 | `assignment-solver` | Solve one assignment problem file using a single endpoint with two logical tracks: (A) Math/Physics PDF problem solving (lecture slides/lecture notes as ground truth) and (B) code… | `agent-skills/skills/assignment-solver/SKILL.md` |
-| `commit-convention` | Applies the project's commit message convention. Use when writing commit messages, making git commits, or summarizing changes. | `agent-skills/skills/commit-convention/SKILL.md` |
+| `commit-manager` | Analyze changed files, split work into intentional commit groups, create convention-based commits, and confirm before pushing. | `agent-skills/skills/commit-manager/SKILL.md` |
 | `docs` | Initializes and manages the project's documentation structure. Follows the "in‑repository knowledge store" pattern, using AGENTS.md as the map and docs/ as the system of record. U… | `agent-skills/skills/docs/SKILL.md` |
 | `exam-cram-sheet` | Reverse-engineer past exams, quizzes, homework, and example problems in a given exam-prep folder to produce one Markdown "필수 암기 정리" study document saved in that folder. The output… | `agent-skills/skills/exam-cram-sheet/SKILL.md` |
 | `lecture-material-digest` | Read one or more lecture material files (for example PDF/PPT/PPTX) and generate one Markdown digest file per source in the same folder using the source title + "_ digest" filename… | `agent-skills/skills/lecture-material-digest/SKILL.md` |
