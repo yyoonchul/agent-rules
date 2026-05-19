@@ -18,6 +18,7 @@ Create these files in the target work area. Prefer the user's requested location
 - `PLAN.md`: objective, context, scope, milestones, task table, and done criteria.
 - `VALIDATION.md`: test conditions, commands, evidence expectations, semantic checks, and human approval gates.
 - `PROGRESS.md`: checkpoint log template for the goal loop to update while running.
+- `implementation-notes.html`: living implementation dashboard for decisions not covered by the spec, required changes, tradeoffs, validation state, and anything the user should know.
 - `GOAL_PROMPT.md`: the final prompt as a saved artifact, while also returning the prompt inline in the final response.
 
 If the task is UI, data, security, deployment, evaluation, or migration heavy, create one extra focused file only when useful:
@@ -79,6 +80,17 @@ Must be a runtime log template, not a completed report. Include:
 - Steering decisions.
 - Final summary section.
 
+### `implementation-notes.html`
+
+Must be a living dashboard, not a completed report. Include:
+
+- Current implementation status and active milestone.
+- Decisions made because the spec was incomplete or ambiguous.
+- Required changes discovered during implementation.
+- Tradeoffs and alternatives considered.
+- Validation status and residual risks.
+- User-visible notes the goal loop should preserve for handoff.
+
 ### `GOAL_PROMPT.md` and Inline Prompt
 
 The prompt must:
@@ -86,7 +98,7 @@ The prompt must:
 - Start with `/goal`.
 - State the objective and verifiable end state.
 - Mention every created file with `@` references.
-- Explain how to use the files: read first, work checkpoint by checkpoint, update `PROGRESS.md`, run validation from `VALIDATION.md`, stop by stop rules.
+- Explain how to use the files: read first, work checkpoint by checkpoint, update `PROGRESS.md`, keep `implementation-notes.html` current as a dashboard, run validation from `VALIDATION.md`, stop by stop rules.
 - Include "Done only when" bullets with commands and evidence requirements.
 - Include "Pause and report" bullets for blockers.
 
@@ -103,6 +115,7 @@ Read first:
 - @PLAN.md
 - @VALIDATION.md
 - @PROGRESS.md
+- @implementation-notes.html
 - <other @context files>
 
 Scope:
@@ -114,11 +127,13 @@ Loop:
 2. Before each checkpoint, update @PROGRESS.md with the current target.
 3. After each checkpoint, run the smallest relevant checks from @VALIDATION.md.
 4. Record commands, exit codes, changed files, and residual risks in @PROGRESS.md.
-5. Classify failures using @VALIDATION.md and attempt one focused repair.
+5. Keep @implementation-notes.html current as a running dashboard: decisions that were not in the spec, required changes, tradeoffs, validation state, and anything the user should know.
+6. Classify failures using @VALIDATION.md and attempt one focused repair.
 
 Done only when:
 - <command/check> exits 0 or the documented human gate is satisfied.
 - @PROGRESS.md contains final evidence: commands, exit codes, changed files, and remaining risks.
+- @implementation-notes.html reflects the final decisions, tradeoffs, changed behavior, validation state, and residual risks.
 - All done criteria in @PLAN.md are satisfied.
 
 Pause and report if:

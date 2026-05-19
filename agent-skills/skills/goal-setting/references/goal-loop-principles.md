@@ -20,6 +20,7 @@ A long-running `/goal` prompt should include:
 - `PLAN.md`: source of truth for objective, scope, milestones, and done criteria.
 - `PROGRESS.md`: append-style checkpoint log and validation evidence.
 - `VALIDATION.md`: deterministic checks, semantic checks, human gates, and failure classes.
+- `implementation-notes.html`: running dashboard for decisions outside the spec, required changes, tradeoffs, validation state, and user handoff notes.
 - `GOAL_PROMPT.md`: the ready-to-run `/goal` command.
 
 ## Validation Layers
@@ -45,6 +46,7 @@ Final evidence should include:
 - Commands run.
 - Exit codes.
 - Changed files.
+- Final `implementation-notes.html` dashboard state.
 - Test or check summaries.
 - Known residual risks.
 - Human gates that remain unresolved.
