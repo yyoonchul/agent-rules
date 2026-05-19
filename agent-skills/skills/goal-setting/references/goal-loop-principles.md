@@ -15,6 +15,11 @@ A long-running `/goal` prompt should include:
 7. Stop rules.
 8. Final evidence requirements.
 
+When any of these elements are unclear, the setup phase should gather missing
+information through conversation before writing the goal artifacts. Conservative
+repo-derived assumptions are acceptable only after asking, and they must be
+recorded as assumptions or open questions.
+
 ## Recommended Files
 
 - `PLAN.md`: source of truth for objective, scope, milestones, and done criteria.
@@ -22,6 +27,12 @@ A long-running `/goal` prompt should include:
 - `VALIDATION.md`: deterministic checks, semantic checks, human gates, and failure classes.
 - `implementation-notes.html`: running dashboard for decisions outside the spec, required changes, tradeoffs, validation state, and user handoff notes.
 - `GOAL_PROMPT.md`: the ready-to-run `/goal` command.
+
+These files are temporary scaffolding for the goal run. After the goal completes
+and final evidence is summarized to the user, delete the generated goal
+artifacts unless the user explicitly asks to keep them. Never delete
+user-provided context, implementation files, or requested deliverables as part
+of cleanup.
 
 ## Validation Layers
 
@@ -34,7 +45,9 @@ A long-running `/goal` prompt should include:
 Pause when:
 
 - The same failure class occurs 3 times.
+- A product, scope, validation, or safety decision is unclear and cannot be answered from the plan, validation notes, or referenced context.
 - A destructive action or external permission is required.
+- Cleanup would delete user-provided context, implementation files, requested deliverables, or files outside the generated goal artifact set.
 - The task needs a product/security/legal decision.
 - Validation cannot run because of missing dependencies or environment access.
 - The task would exceed the declared scope.

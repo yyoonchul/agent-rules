@@ -30,10 +30,32 @@ If the task is UI, data, security, deployment, evaluation, or migration heavy, c
 
 Use `assets/templates/` as the starting point for standard files.
 
+## Artifact Cleanup
+
+The generated planning files are temporary goal-loop scaffolding. The final
+`/goal` prompt must tell the goal loop to delete its own goal artifacts after
+the done criteria are satisfied and final evidence has been summarized to the
+user.
+
+Default cleanup targets are:
+
+- `PLAN.md`
+- `VALIDATION.md`
+- `PROGRESS.md`
+- `implementation-notes.html`
+- `GOAL_PROMPT.md`
+- Extra focused files created only for the goal run, such as `ACCESSIBILITY.md`,
+  `EVAL_CASES.md`, `ROLLBACK.md`, or `STEERING.md`
+
+Do not delete user-provided source/context files, implementation files,
+deliverables requested by the user, or any artifact the user explicitly asks to
+keep. If cleanup would require deleting files outside the generated goal
+artifact set, pause and ask first.
+
 ## Conversation Workflow
 
 1. Identify whether the user's request is already concrete enough.
-2. If key fields are missing, ask concise questions before creating files. Prefer one round with grouped questions.
+2. If key fields are missing or ambiguous, gather information through conversation before creating files. Ask concise, grouped questions, then follow up on answers that still leave scope, objective, validation, or product decisions unclear.
 3. Required fields:
    - Objective: one outcome, not a backlog bundle.
    - Context to read: files, issues, logs, docs, failing tests, screenshots, or examples.
@@ -42,7 +64,7 @@ Use `assets/templates/` as the starting point for standard files.
    - Test conditions: deterministic commands first, semantic checks second, human gates last.
    - Done criteria: verifiable end state with commands, exit codes, and evidence files.
    - Stop rules: repeated failure, missing permissions, unclear product decision, destructive action, time/token budget, or external dependency.
-4. If the user cannot provide a field, infer a conservative default from the repo and mark it as an assumption in `PLAN.md`.
+4. Do not silently resolve unclear product, scope, validation, or safety decisions. Ask the user first; if the user explicitly cannot provide a field after that conversation, infer a conservative default from the repo and mark it as an assumption or open question in `PLAN.md`.
 5. Before editing, briefly tell the user which files will be created or updated.
 
 ## Artifact Requirements
@@ -58,6 +80,7 @@ Must include:
 - Milestone table with ID, task, expected output, validation, and status.
 - Done criteria that can be evaluated from files, command results, or explicit user approval.
 - Assumptions and open questions.
+- Explicitly unresolved questions that the goal loop must pause on before making product, scope, validation, or safety decisions.
 
 ### `VALIDATION.md`
 
@@ -101,6 +124,8 @@ The prompt must:
 - Explain how to use the files: read first, work checkpoint by checkpoint, update `PROGRESS.md`, keep `implementation-notes.html` current as a dashboard, run validation from `VALIDATION.md`, stop by stop rules.
 - Include "Done only when" bullets with commands and evidence requirements.
 - Include "Pause and report" bullets for blockers.
+- Tell the goal loop to ask the user for clarification when a product, scope, validation, or safety decision is unclear instead of guessing.
+- Tell the goal loop to clean up generated goal artifacts after completion, without deleting user-provided context or requested deliverables.
 
 Return the exact same prompt inline in the final answer so the user can run it directly.
 
@@ -135,11 +160,14 @@ Done only when:
 - @PROGRESS.md contains final evidence: commands, exit codes, changed files, and remaining risks.
 - @implementation-notes.html reflects the final decisions, tradeoffs, changed behavior, validation state, and residual risks.
 - All done criteria in @PLAN.md are satisfied.
+- Final evidence has been summarized to the user, then generated goal artifacts have been deleted: @PLAN.md, @VALIDATION.md, @PROGRESS.md, @implementation-notes.html, @GOAL_PROMPT.md, and any extra goal-only files created for this run.
 
 Pause and report if:
 - The same failure class occurs 3 times.
+- A product, scope, validation, or safety decision is unclear and cannot be answered from @PLAN.md, @VALIDATION.md, or the referenced context.
 - A destructive action, external permission, secret, deployment, billing, or product decision is required.
 - The requested change would violate the scope or non-goals in @PLAN.md.
+- Cleanup would delete user-provided context, implementation files, requested deliverables, or files outside the generated goal artifact set.
 ```
 
 ## Quality Check
