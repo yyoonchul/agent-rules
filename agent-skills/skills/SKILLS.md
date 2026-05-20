@@ -6,7 +6,7 @@
 | 스킬 이름 | 역할 요약 | 경로 |
 | --- | --- | --- |
 | `assignment-solver` | Solve one assignment problem file using a single endpoint with two logical tracks: (A) Math/Physics PDF problem solving (lecture slides/lecture notes as ground truth) and (B) code… | `agent-skills/skills/assignment-solver/SKILL.md` |
-| `commit-manager` | Analyze changed files, split work into intentional commit groups, create convention-based commits, then ask in-session whether to push and push only after confirmation. | `agent-skills/skills/commit-manager/SKILL.md` |
+| `commit-manager` | Analyze changed files, split work into intentional commit groups, create convention-based commits, and push too when the user includes push intent in the request. | `agent-skills/skills/commit-manager/SKILL.md` |
 | `docs` | Initializes and manages the project's documentation structure. Follows the "in‑repository knowledge store" pattern, using AGENTS.md as the map and docs/ as the system of record. U… | `agent-skills/skills/docs/SKILL.md` |
 | `exam-cram-sheet` | Reverse-engineer past exams, quizzes, homework, and example problems in a given exam-prep folder to produce one Markdown "필수 암기 정리" study document saved in that folder. The output… | `agent-skills/skills/exam-cram-sheet/SKILL.md` |
 | `goal-setting` | Use this skill when a user wants to prepare a Codex or Claude /goal run by collaboratively defining the objective, scope, plan, test conditions, validation evidence, stop rules, a… | `agent-skills/skills/goal-setting/SKILL.md` |

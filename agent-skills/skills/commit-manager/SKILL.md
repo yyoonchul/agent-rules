@@ -1,6 +1,6 @@
 ---
 name: commit-manager
-description: Analyze changed files, split work into intentional commit groups, create convention-based commits, and confirm before pushing.
+description: Analyze changed files, split work into intentional commit groups, create convention-based commits, and push too when the user includes push intent in the request.
 ---
 
 # Commit Manager
@@ -64,8 +64,20 @@ When preparing commits:
 8. Generate and use a commit message following the convention rules.
 9. Repeat until every intended group is committed.
 10. After all commits, run `git status --short` and report any remaining files.
-11. Before running `git push`, always ask the user to confirm the remote and
-    branch. Do not push without explicit confirmation.
+11. If the user's original request includes push intent, such as "commit and
+    push", "commit then push", "commit with push", "커밋하고 push", or
+    "커밋 뒤에 push", treat that as push confirmation for the newly created
+    commit(s).
+12. If push intent was not included in the original request, ask the user
+    whether they want to push the newly created commit(s).
+13. If the user declines or does not explicitly confirm, stop after reporting
+    the commit(s), current branch, upstream status, and the exact push command
+    they can run later.
+14. If pushing is confirmed, identify the target remote and branch from the
+    current repository state, ask the user to confirm that target only if there
+    is ambiguity, then run `git push` as part of this skill's workflow.
+15. After pushing, report the pushed branch and final `git status --short`
+    result.
 
 ## Safety Rules
 
